@@ -1,6 +1,8 @@
 import listatreeneistaa from './treenidata.js';
 import {useState} from 'react';
 
+//tallenna button on seuraava toiminnallisuus
+//muutenkin vaatii hienosäätöä
 export default function TreeninLisays({ lisaaButton }) {
     const [sarja, setSarja] = useState({});
     const [syotetila, setSyotetila] = useState(false);
@@ -39,6 +41,10 @@ export default function TreeninLisays({ lisaaButton }) {
     }
 
     const [sarjaindeksi, setSarjaindeksi] = useState(1);
+    const [paino, setPaino] = useState();
+    const [toistot, setToistot] = useState();
+
+    const [painoToistoLista, setPainoToistoLista] = useState([]);
 
     function sarjaX() {
         let luku = sarjalkm;
@@ -47,6 +53,24 @@ export default function TreeninLisays({ lisaaButton }) {
             let indeksix = sarjaindeksi;
             indeksix++;
             setSarjaindeksi(indeksix);
+
+            let objekti = {
+                paino: paino,
+                toistot: toistot 
+            }
+            setPaino();
+            setToistot();
+            let lista = [...painoToistoLista];
+            lista.push(objekti);
+            setPainoToistoLista(lista);
+        }
+
+        function painoChange(event) {
+            setPaino(event.target.value);
+        }
+
+        function toistoChange(event) {
+            setToistot(event.target.value);
         }
 
 
@@ -59,6 +83,8 @@ export default function TreeninLisays({ lisaaButton }) {
                         <input 
                         className="inputti"
                         type="text"
+                        value={paino}
+                        onChange={painoChange}
                         />
                     </div>
                     <div className="yksisyotediv">
@@ -66,6 +92,8 @@ export default function TreeninLisays({ lisaaButton }) {
                         <input 
                         className="inputti"
                         type="text"
+                        value={toistot}
+                        onChange={toistoChange}
                         />
                     </div>
                     <button onClick={() => lisaaYksi()}>Lisää</button>
@@ -80,9 +108,6 @@ export default function TreeninLisays({ lisaaButton }) {
         setLiike(event.target.value);
     }
 
-    //mieti tämä uusiksi. kun kirjataan toistoja ja sarjoja niin miten se kannattaa tehdä.
-    //nyt sarja lkm ja toisto kysytään kerran vaan ja esimerkiksi jos on ollu sarja missä on 8,8,7 niin ei nyt onnistu
-    // voisi toimia siten esim että kun syöttää lkm niin kysytään niin monta kertaa kuin lkm on paino ja toistot.
     return (
         <div>
             {syotetila === false ? (
@@ -115,12 +140,21 @@ export default function TreeninLisays({ lisaaButton }) {
                             <button className="minus" onClick={() => minus()}>-</button>
                         </div>
                         {sarjaX()}
+                        <button>Tallenna</button>
                         <button className="takasbutton" onClick={() => takaisinButton()}>takaisin</button>
                     </div>
 
                     <div className="tarkastelupuoli">
                         <h3 className="otsikko">Sarja</h3>
                         <h4 className="otsikko">{liike}</h4>
+                        {painoToistoLista.length > 0 && (
+                            painoToistoLista.map((objekti, indeksi) => (
+                                <div key={indeksi}>
+                                    <p>Sarja{indeksi + 1}: {objekti.paino} kg {objekti.toistot} kpl</p>
+                                </div>
+                            ))
+                        )}
+                        
                     </div>
                 </div>  
             )}
