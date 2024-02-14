@@ -32,6 +32,7 @@
     width: 30px;
     margin-left: 10px;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 .lisaaButton:hover {
     cursor: pointer;
@@ -49,7 +50,6 @@
 
 .treeniotsikkodiv:hover {
     cursor: pointer;
-    height: 50px;
 }
 
 .treeniotsikko {

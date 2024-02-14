@@ -1,7 +1,9 @@
 import './cssTyylit/paaSivu.css';
 import {useState, useEffect} from 'react';
+import listatreeneistaa from './treenidata';
+import TreeninLisays from'./treeninLisays';
 
-
+//käännä listan suunta siten että uusin näytetään ensimmäiseksi, tee tämä vasta kun muut toiminnallisuudet ovat kunnossa
 export default function Paasivu() {
     // tee lista objekteista
     const [listatreeneista, setListatreeneista] = useState([{}]);
@@ -28,14 +30,8 @@ export default function Paasivu() {
         setVarmistusPoistolle(false);
     }
 
-    const listatreeneistaa = [
-        { otsikko: 'Legs 1', paivamaara: '2024-02-13' },
-        { otsikko: 'Push 1', paivamaara: '2024-02-14' },
-        { otsikko: 'Pull 1', paivamaara: '2024-02-15' },
-        // Lisää tarvittaessa muita treenejä
-    ];
-
     useEffect(() => {
+
         setListatreeneista(listatreeneistaa);
     }, []);
 
@@ -61,12 +57,10 @@ export default function Paasivu() {
     }
 
     function lisaaButton() {
-        setTreeninlisaysnakyma(true);
+        setTreeninlisaysnakyma(!treeninlisaysnakyma);
     }
 
-    function takaisinPaasivulle() {
-        setTreeninlisaysnakyma(false);
-    }
+    
 
     return (
         <div className="paadiv">
@@ -74,20 +68,12 @@ export default function Paasivu() {
                 <div>
                     <h1 className="paaotsikko">Salipäiväkirja</h1>
                     <div className="treenilistadiv">
-                        {palautalistatreeneista()}
                         <button className="lisaaButton" onClick={() => lisaaButton()}>+</button>
+                        {palautalistatreeneista()}
                     </div>
                 </div>
             ) : (
-                <div>
-                    <h1 className="paaotsikko">Salipäiväkirja</h1>
-                    <div className="treeninkirjausdiv">
-                        <p>Treenin otsikko: </p>
-                        <input type="text"></input>
-
-                        <button onClick={() => takaisinPaasivulle()}>takaisin</button>
-                    </div>
-                </div>
+                <TreeninLisays lisaaButton={lisaaButton} />
             )}
         </div>
     )
