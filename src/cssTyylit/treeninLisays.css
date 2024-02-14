@@ -1,0 +1,72 @@
+.treeninkirjausdiv {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    min-height: 400px;
+    width: 500px;
+    border-radius: 8px;
+    background-color: rgb(243, 236, 236);
+}
+
+.paanakyma {
+    display: flex;
+    flex-direction: row;
+}
+
+.syotenakyma {
+    display: flex;
+    flex-direction: row;
+}
+
+.syotepuoli {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    min-height: 400px;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    background-color: pink;
+}
+
+.tarkastelupuoli {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    min-height: 400px;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: auto;
+    margin-left: 5%;
+    background-color: pink;
+}
+
+.lisaatreeni {
+    margin-top: 50%;
+}
+
+.takasbutton {
+    margin-top: auto;
+}
+
+.otsikko {
+    text-align: center;
+}
+
+.yksisyotediv {
+    display: flex;
+}
+
+.pee {
+    margin-left: 10px;
+}
+.inputti {
+    height: 30px;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-right: 20px;
+}
+

@@ -71,16 +71,7 @@
     height: 25px;
 }
 
-.treeninkirjausdiv {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    min-height: 400px;
-    width: 500px;
-    border-radius: 8px;
-    background-color: rgb(243, 236, 236);
-}
+
 
 @media (max-width: 600px) {
     .paadiv {

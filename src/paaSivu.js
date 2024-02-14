@@ -1,4 +1,5 @@
 import './cssTyylit/paaSivu.css';
+import './cssTyylit/treeninLisays.css';
 import {useState, useEffect} from 'react';
 import listatreeneistaa from './treenidata';
 import TreeninLisays from'./treeninLisays';
