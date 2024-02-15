@@ -41,8 +41,8 @@ export default function TreeninLisays({ lisaaButton }) {
     }
 
     const [sarjaindeksi, setSarjaindeksi] = useState(1);
-    const [paino, setPaino] = useState();
-    const [toistot, setToistot] = useState();
+    const [paino, setPaino] = useState("");
+    const [toistot, setToistot] = useState("");
 
     const [painoToistoLista, setPainoToistoLista] = useState([]);
 
@@ -50,6 +50,7 @@ export default function TreeninLisays({ lisaaButton }) {
         let luku = sarjalkm;
 
         function lisaaYksi() {
+            console.log("pöö");
             let indeksix = sarjaindeksi;
             indeksix++;
             setSarjaindeksi(indeksix);
@@ -58,8 +59,8 @@ export default function TreeninLisays({ lisaaButton }) {
                 paino: paino,
                 toistot: toistot 
             }
-            setPaino();
-            setToistot();
+            setPaino("");
+            setToistot("");
             let lista = [...painoToistoLista];
             lista.push(objekti);
             setPainoToistoLista(lista);
@@ -119,9 +120,9 @@ export default function TreeninLisays({ lisaaButton }) {
                 liike: liike,
                 painotJaToistot: painoToistoLista
             }
+            //console.log(sarjaobjekti);
             lista.push(sarjaobjekti);
             setKokotreeni(lista);
-            console.log(kokotreeni);
         }
         setSarjaindeksi(1);
         setSarjalkm(0);
@@ -134,11 +135,18 @@ export default function TreeninLisays({ lisaaButton }) {
     function lisaaTreeni() {
         //listatreeneistaa on se lista
         if (treeninNimi !== "" && kokotreeni.length > 0) {
-            listatreeneistaa.push({otsikko: treeninNimi});
-            console.log(kokotreeni);
+            listatreeneistaa.push({otsikko: treeninNimi, sarjat: kokotreeni});
+            //console.log("koko treeni: " + kokotreeni);
+            /*kokotreeni.map((asia, indeksi) => {
+                console.log(asia.liike);
+            
+                // Käsittele sisäkkäinen lista
+                asia.painotJaToistot.map((sarja, sarjaIndeksi) => {
+                    console.log(sarja.paino + " " + sarja.toistot);
+                });
+            });*/
+
         }
-        //listatreeneistaa.push({otsikko: 'testi', paivamaara: '696969'});
-        //console.log(listatreeneistaa);
         lisaaButton();
     }
 

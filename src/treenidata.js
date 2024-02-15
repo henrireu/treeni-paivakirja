@@ -4,7 +4,7 @@ const listatreeneistaa = [
         sarjat: [
             {
                 liike: "kyykky",
-                sarja: [
+                painotJaToistot: [
                     {
                         paino: 50,
                         toistot: 10
@@ -13,8 +13,7 @@ const listatreeneistaa = [
             }
         ]
     },
-    { otsikko: 'Push 1', paivamaara: '2024-02-14' },
-    { otsikko: 'Pull 1', paivamaara: '2024-02-15' },
+    
 ];
 
 export default listatreeneistaa;

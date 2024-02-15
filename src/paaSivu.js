@@ -37,7 +37,16 @@ export default function Paasivu() {
     }, []);
 
     function testi() {
-        console.log(listatreeneista);
+        listatreeneistaa.map((objekti, indeksi) => {
+            console.log(objekti.otsikko);
+    
+            objekti.sarjat.map((sarja, sarjaindeksi) => {
+                console.log(sarja.liike); 
+                sarja.painotJaToistot.map((painoToisto, ptIndeksi) => {
+                    console.log(painoToisto.paino + "kg " + painoToisto.toistot + "x");
+                });
+            });
+        });
     }
 
     function palautalistatreeneista() {
