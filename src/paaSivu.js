@@ -36,6 +36,9 @@ export default function Paasivu() {
         setListatreeneista(listatreeneistaa);
     }, []);
 
+    function testi() {
+        console.log(listatreeneista);
+    }
 
     function palautalistatreeneista() {
         return (
@@ -53,6 +56,7 @@ export default function Paasivu() {
                         )}
                     </div>
                 ))}
+                <button onClick={() => testi()}>testi</button>
             </div>
         );
     }

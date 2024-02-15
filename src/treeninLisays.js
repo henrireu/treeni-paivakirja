@@ -123,6 +123,10 @@ export default function TreeninLisays({ lisaaButton }) {
             setKokotreeni(lista);
             console.log(kokotreeni);
         }
+        setSarjaindeksi(1);
+        setSarjalkm(0);
+        setLiike("");
+        setPainoToistoLista([]);
         setSyotetila(false);
     }
 
@@ -131,9 +135,11 @@ export default function TreeninLisays({ lisaaButton }) {
         //listatreeneistaa on se lista
         if (treeninNimi !== "" && kokotreeni.length > 0) {
             listatreeneistaa.push({otsikko: treeninNimi});
+            console.log(kokotreeni);
         }
         //listatreeneistaa.push({otsikko: 'testi', paivamaara: '696969'});
         //console.log(listatreeneistaa);
+        lisaaButton();
     }
 
     return (
