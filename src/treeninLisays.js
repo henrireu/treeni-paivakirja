@@ -4,7 +4,9 @@ import {useState} from 'react';
 //tallenna button on seuraava toiminnallisuus
 //muutenkin vaatii hienosäätöä
 export default function TreeninLisays({ lisaaButton }) {
-    const [sarja, setSarja] = useState({});
+    const [treeninNimi, setTreeninNimi] = useState("");
+    //kokotreeni on lista objekteja mikä sisältää liikkeen sarjat
+    const [kokotreeni, setKokotreeni] = useState([]);
     const [syotetila, setSyotetila] = useState(false);
 
     const [liike, setLiike] = useState("");
@@ -24,6 +26,8 @@ export default function TreeninLisays({ lisaaButton }) {
         setSyotetila(false);
         setSarjaindeksi(1);
         setSarjalkm(0);
+        setLiike("");
+        setPainoToistoLista([]);
     }
 
     function plus() {
@@ -103,9 +107,24 @@ export default function TreeninLisays({ lisaaButton }) {
         }
         
     }
+
+    function treeninNimiChange(event) {
+        setTreeninNimi(event.target.value);
+    }
     
     function liikeChange(event) {
         setLiike(event.target.value);
+    }
+
+    function tallennaSarja() {
+        let lista = [...kokotreeni];
+        let sarjaobjekti = {
+            liike: liike,
+            painotJaToistot: painoToistoLista
+        }
+        lista.push(sarjaobjekti);
+        setKokotreeni(lista);
+        console.log(kokotreeni);
     }
 
     return (
@@ -113,12 +132,31 @@ export default function TreeninLisays({ lisaaButton }) {
             {syotetila === false ? (
                 <div className="paanakyma">
                     <div className="syotepuoli">
+                        <div className="yksisyotediv">
+                            <p className="pee">Treenin nimi:</p>
+                            <input 
+                                className="inputti"
+                                type="text"
+                                value={treeninNimi}
+                                onChange={treeninNimiChange}
+                            />
+                        </div>
                         <button onClick={() => lisaaSarja()}>Lisää sarja</button>
                         <button className="lisaatreeni" onClick={() => lisaaTreeni()}>Lisää treeni</button>
                         <button onClick={lisaaButton}>Palaa takaisin</button>
                     </div>
                     <div className="tarkastelupuoli">
-                        <h3 className="otsikko">Treeni</h3>
+                        <h3 className="otsikko">{treeninNimi}</h3>
+                        {kokotreeni.length > 0 && (
+                            kokotreeni.map((objekti, indeksi) => (
+                                <div key={indeksi}>
+                                    <h4 className="otsikko">{objekti.liike}</h4>
+                                    {objekti.painotJaToistot.map((rivi, indeksi) => (
+                                        <p key={indeksi}>{rivi.paino} kg {rivi.toistot}x</p>
+                                    ))}
+                                </div>
+                            ))
+                        )}
                     </div>
                 </div>
             ) : (
@@ -140,7 +178,7 @@ export default function TreeninLisays({ lisaaButton }) {
                             <button className="minus" onClick={() => minus()}>-</button>
                         </div>
                         {sarjaX()}
-                        <button>Tallenna</button>
+                        <button onClick={() => tallennaSarja()}>Tallenna sarja</button>
                         <button className="takasbutton" onClick={() => takaisinButton()}>takaisin</button>
                     </div>
 
