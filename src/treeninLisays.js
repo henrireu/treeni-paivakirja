@@ -13,10 +13,6 @@ export default function TreeninLisays({ lisaaButton }) {
 
     const [sarjalkm, setSarjalkm] = useState(0);
 
-    function lisaaTreeni() {
-        listatreeneistaa.push({otsikko: 'testi', paivamaara: '696969'});
-        console.log(listatreeneistaa);
-    }
 
     function lisaaSarja() {
         setSyotetila(true);
@@ -117,14 +113,27 @@ export default function TreeninLisays({ lisaaButton }) {
     }
 
     function tallennaSarja() {
-        let lista = [...kokotreeni];
-        let sarjaobjekti = {
-            liike: liike,
-            painotJaToistot: painoToistoLista
+        if (sarjalkm > 0) {
+            let lista = [...kokotreeni];
+            let sarjaobjekti = {
+                liike: liike,
+                painotJaToistot: painoToistoLista
+            }
+            lista.push(sarjaobjekti);
+            setKokotreeni(lista);
+            console.log(kokotreeni);
         }
-        lista.push(sarjaobjekti);
-        setKokotreeni(lista);
-        console.log(kokotreeni);
+        setSyotetila(false);
+    }
+
+    //tässä lisätään treeni tietokantaan tässä tapauksessa treenidata.js kansioon
+    function lisaaTreeni() {
+        //listatreeneistaa on se lista
+        if (treeninNimi !== "" && kokotreeni.length > 0) {
+            listatreeneistaa.push({otsikko: treeninNimi});
+        }
+        //listatreeneistaa.push({otsikko: 'testi', paivamaara: '696969'});
+        //console.log(listatreeneistaa);
     }
 
     return (
