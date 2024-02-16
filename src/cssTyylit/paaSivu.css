@@ -71,7 +71,9 @@
     height: 25px;
 }
 
-
+.treeniklik {
+    width: 92%
+}
 
 @media (max-width: 600px) {
     .paadiv {

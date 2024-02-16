@@ -136,15 +136,15 @@ export default function TreeninLisays({ lisaaButton }) {
         //listatreeneistaa on se lista
         if (treeninNimi !== "" && kokotreeni.length > 0) {
             listatreeneistaa.push({otsikko: treeninNimi, sarjat: kokotreeni});
-            //console.log("koko treeni: " + kokotreeni);
-            /*kokotreeni.map((asia, indeksi) => {
+            console.log(treeninNimi);
+            kokotreeni.map((asia, indeksi) => {
                 console.log(asia.liike);
             
                 // Käsittele sisäkkäinen lista
                 asia.painotJaToistot.map((sarja, sarjaIndeksi) => {
                     console.log(sarja.paino + " " + sarja.toistot);
                 });
-            });*/
+            });
 
         }
         lisaaButton();
