@@ -1,11 +1,16 @@
 import './cssTyylit/paaSivu.css';
 import './cssTyylit/treeninLisays.css';
 import {useState, useEffect} from 'react';
-import listatreeneistaa from './treenidata';
+import {listatreeneistaa, poistaReeniListasta} from './treenidata';
+
 import TreeninLisays from'./treeninLisays';
 
 //käännä listan suunta siten että uusin näytetään ensimmäiseksi, tee tämä vasta kun muut toiminnallisuudet ovat kunnossa
 
+// tämä local storage tallennus ei toimi
+// muuta ehkä koko sovelluksen rakennetta siten että ei ole treenidata.js kansiota vaan päivitä local storage useState listatreeneista
+//perusteella
+//sitten anna useState lista lisaaButtonin sisällä treeninLisäys näkymään
 export default function Paasivu() {
     const [listatreeneista, setListatreeneista] = useState([]);
     // varmistus ikkuna kun poistetaan treeniä. tämä on state sen näkymiselle
@@ -19,6 +24,7 @@ export default function Paasivu() {
     //indeksi mikä treeni näytetään
     const [treeniIndeksi, setTreeniIndeksi] = useState();
 
+
     const kasittelePoisto = (indeksi) => {
         setVarmistusPoistolle(true);
         setPoistoindeksi(indeksi);
@@ -26,13 +32,16 @@ export default function Paasivu() {
 
     const kasitteleVarmistus = () => {
         const indeksi = poistoindeksi;
-        const uusilista = listatreeneistaa.splice(indeksi, 1);
-
-        setListatreeneista(uusilista);
+        poistaReeniListasta(indeksi);
         setVarmistusPoistolle(false);
+    } 
 
-        console.log("listatreeneistaa poiston jälkeen: ");
-        listatreeneistaa.map((objekti, indeksi) => {
+    const kasittelePeruutus = () => {
+        setVarmistusPoistolle(false);
+    }
+
+    useEffect(() => {
+        /*listatreeneista.map((objekti, indeksi) => {
             console.log(objekti.otsikko);
     
             objekti.sarjat.map((sarja, sarjaindeksi) => {
@@ -41,17 +50,11 @@ export default function Paasivu() {
                     console.log(painoToisto.paino + "kg " + painoToisto.toistot + "x");
                 });
             });
-        });
-    } 
-
-    const kasittelePeruutus = () => {
-        setVarmistusPoistolle(false);
-    }
-
-    useEffect(() => {
-
+        });*/
         setListatreeneista(listatreeneistaa);
-    }, [listatreeneistaa, listatreeneista]);
+
+        // tänne ehkä funktio mikä on treenidata.js ja tallentaa local storageen
+    }, [listatreeneistaa]);
 
 
     function naytaTreeni(indeksi) {
@@ -68,7 +71,8 @@ export default function Paasivu() {
                         <div className="treeniklik" onClick={() => naytaTreeni(indeksi)}>
                             <p className="treeniotsikko">{treeni.otsikko}</p>
                             {treeniNakyma === true && indeksi === treeniIndeksi && (
-                                listatreeneistaa[indeksi].sarjat.map((objekti, indeksix) => (
+                                //muuta listatreeneista vain listatreeneistaa jos ei toimi
+                                listatreeneista[indeksi].sarjat.map((objekti, indeksix) => (
                                     <div key={indeksix}>
                                         <p>{objekti.liike}</p>
                                         {objekti.painotJaToistot.map((painoToisto, ptIndeksi) => (

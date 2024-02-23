@@ -1,8 +1,6 @@
-import listatreeneistaa from './treenidata.js';
+import {listatreeneistaa, lisaaReeniListaan} from './treenidata.js';
 import {useState} from 'react';
 
-//tallenna button on seuraava toiminnallisuus
-//muutenkin vaatii hienosäätöä
 export default function TreeninLisays({ lisaaButton }) {
     const [treeninNimi, setTreeninNimi] = useState("");
     //kokotreeni on lista objekteja mikä sisältää liikkeen sarjat
@@ -50,7 +48,6 @@ export default function TreeninLisays({ lisaaButton }) {
         let luku = sarjalkm;
 
         function lisaaYksi() {
-            console.log("pöö");
             let indeksix = sarjaindeksi;
             indeksix++;
             setSarjaindeksi(indeksix);
@@ -120,7 +117,6 @@ export default function TreeninLisays({ lisaaButton }) {
                 liike: liike,
                 painotJaToistot: painoToistoLista
             }
-            //console.log(sarjaobjekti);
             lista.push(sarjaobjekti);
             setKokotreeni(lista);
         }
@@ -133,20 +129,18 @@ export default function TreeninLisays({ lisaaButton }) {
 
     //tässä lisätään treeni tietokantaan tässä tapauksessa treenidata.js kansioon
     function lisaaTreeni() {
-        //listatreeneistaa on se lista
-        if (treeninNimi !== "" && kokotreeni.length > 0) {
-            listatreeneistaa.push({otsikko: treeninNimi, sarjat: kokotreeni});
-            console.log(treeninNimi);
-            kokotreeni.map((asia, indeksi) => {
-                console.log(asia.liike);
-            
-                // Käsittele sisäkkäinen lista
-                asia.painotJaToistot.map((sarja, sarjaIndeksi) => {
-                    console.log(sarja.paino + " " + sarja.toistot);
-                });
-            });
+        /*if (treeninNimi !== "" && kokotreeni.length > 0) {
 
+            //listatreeneistaa.push({otsikko: treeninNimi, sarjat: kokotreeni});
+            
+            objekti.otsikko = treeninNimi;
+            objekti.sarjat = kokotreeni;
+        }*/
+        let objekti = {
+            otsikko: treeninNimi,
+            sarjat: kokotreeni
         }
+        lisaaReeniListaan(objekti);
         lisaaButton();
     }
 
