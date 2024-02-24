@@ -129,21 +129,32 @@ export default function TreeninLisays({ lisaaButton }) {
 
     //tässä lisätään treeni tietokantaan tässä tapauksessa treenidata.js kansioon
     function lisaaTreeni() {
-        /*if (treeninNimi !== "" && kokotreeni.length > 0) {
-
-            //listatreeneistaa.push({otsikko: treeninNimi, sarjat: kokotreeni});
-            
-            objekti.otsikko = treeninNimi;
-            objekti.sarjat = kokotreeni;
-        }*/
         let objekti = {
             otsikko: treeninNimi,
             sarjat: kokotreeni
         }
-        lisaaReeniListaan(objekti);
-        lisaaButton();
+        if (treeninNimi !== "" && kokotreeni.length > 0) {
+            lisaaReeniListaan(objekti);
+            //lisaaButtonista siirrytään takas paaSivulle
+            lisaaButton();
+        }   
     }
 
+    function poista(indeksi) {
+        let uusilista = [...kokotreeni];
+        uusilista.splice(indeksi, 1);
+        setKokotreeni(uusilista);
+    }
+
+    const [sarjaNakyma, setSarjaNakyma] = useState(false);
+    const [sarjadivIndeksi, setSarjadivIndeksi] = useState();
+
+    function naytaSarja(indeksi) {
+        setSarjaNakyma(!sarjaNakyma);
+        setSarjadivIndeksi(indeksi);
+    }
+
+    //toiminto kun klikkaa sarjaa toimii mutta css kusee ja paljon hiottavaa. täytyy klikata tekstiä että toimii
     return (
         <div>
             {syotetila === false ? (
@@ -158,11 +169,26 @@ export default function TreeninLisays({ lisaaButton }) {
                                 onChange={treeninNimiChange}
                             />
                         </div>
-                        <button onClick={() => lisaaSarja()}>Lisää sarja</button>
-                        <button className="lisaatreeni" onClick={() => lisaaTreeni()}>Lisää treeni</button>
-                        <button onClick={lisaaButton}>Palaa takaisin</button>
+                        <button className="lisaaSarjaBtn" onClick={() => lisaaSarja()}>+</button>
+                        {/*tee tähän kohtaan lista liikkeistä kokotreeni.liike*/}
+                        {kokotreeni.map((nimi, indeksi) => (
+                            <div key={indeksi} className="nimidiv">
+                                <div className="sarjaklik" onClick={() => naytaSarja(indeksi)}>
+                                    <p className="nimi">{nimi.liike}</p>
+                                    {sarjaNakyma === true && indeksi === sarjadivIndeksi && (
+                                        //muuta listatreeneista vain listatreeneistaa jos ei toimi
+                                        nimi.painotJaToistot.map((objekti, indeksi) => (
+                                            <p key={indeksi}>{objekti.paino}+{objekti.toistot}</p>
+                                        ))
+                                    )}
+                                </div>
+                                <button className="poistaButton" onClick={() => poista(indeksi)}>🗑️</button>
+                            </div>
+                        ))}
+                        <button className="lisaatreeni" onClick={() => lisaaTreeni()}>Tallenna treeni</button>
+                        <button className="takasbutton" onClick={lisaaButton}>Palaa takaisin</button>
                     </div>
-                    <div className="tarkastelupuoli">
+                    {/*<div className="tarkastelupuoli">
                         <h3 className="otsikko">{treeninNimi}</h3>
                         {kokotreeni.length > 0 && (
                             kokotreeni.map((objekti, indeksi) => (
@@ -174,7 +200,7 @@ export default function TreeninLisays({ lisaaButton }) {
                                 </div>
                             ))
                         )}
-                    </div>
+                    </div>*/}
                 </div>
             ) : (
                 <div className="syotenakyma">
@@ -199,7 +225,7 @@ export default function TreeninLisays({ lisaaButton }) {
                         <button className="takasbutton" onClick={() => takaisinButton()}>takaisin</button>
                     </div>
 
-                    <div className="tarkastelupuoli">
+                    {/*<div className="tarkastelupuoli">
                         <h3 className="otsikko">Sarja</h3>
                         <h4 className="otsikko">{liike}</h4>
                         {painoToistoLista.length > 0 && (
@@ -210,7 +236,7 @@ export default function TreeninLisays({ lisaaButton }) {
                             ))
                         )}
                         
-                    </div>
+                    </div>*/}
                 </div>  
             )}
         </div>

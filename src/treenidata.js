@@ -1,19 +1,3 @@
-//let listatreeneistaa = [
-    /*{
-        otsikko: 'Legs 1',
-        sarjat: [
-            {
-                liike: "kyykky",
-                painotJaToistot: [
-                    {
-                        paino: 50,
-                        toistot: 10
-                    }
-                ]
-            }
-        ]
-    },*/
-//];
 let listatreeneistaa = JSON.parse(localStorage.getItem('listatreeneistaa')) || [];
 
 function lisaaReeniListaan(treeni) {

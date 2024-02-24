@@ -7,10 +7,6 @@ import TreeninLisays from'./treeninLisays';
 
 //käännä listan suunta siten että uusin näytetään ensimmäiseksi, tee tämä vasta kun muut toiminnallisuudet ovat kunnossa
 
-// tämä local storage tallennus ei toimi
-// muuta ehkä koko sovelluksen rakennetta siten että ei ole treenidata.js kansiota vaan päivitä local storage useState listatreeneista
-//perusteella
-//sitten anna useState lista lisaaButtonin sisällä treeninLisäys näkymään
 export default function Paasivu() {
     const [listatreeneista, setListatreeneista] = useState([]);
     // varmistus ikkuna kun poistetaan treeniä. tämä on state sen näkymiselle
@@ -41,19 +37,7 @@ export default function Paasivu() {
     }
 
     useEffect(() => {
-        /*listatreeneista.map((objekti, indeksi) => {
-            console.log(objekti.otsikko);
-    
-            objekti.sarjat.map((sarja, sarjaindeksi) => {
-                console.log(sarja.liike); 
-                sarja.painotJaToistot.map((painoToisto, ptIndeksi) => {
-                    console.log(painoToisto.paino + "kg " + painoToisto.toistot + "x");
-                });
-            });
-        });*/
         setListatreeneista(listatreeneistaa);
-
-        // tänne ehkä funktio mikä on treenidata.js ja tallentaa local storageen
     }, [listatreeneistaa]);
 
 
