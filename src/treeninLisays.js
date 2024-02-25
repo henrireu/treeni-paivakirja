@@ -155,6 +155,8 @@ export default function TreeninLisays({ lisaaButton }) {
     }
 
     //toiminto kun klikkaa sarjaa toimii mutta css kusee ja paljon hiottavaa. täytyy klikata tekstiä että toimii
+
+    // laita pop up ikkuna kun painaa tallenna treeni ja jokin tieto puuttuu.
     return (
         <div>
             {syotetila === false ? (
@@ -174,19 +176,24 @@ export default function TreeninLisays({ lisaaButton }) {
                         {kokotreeni.map((nimi, indeksi) => (
                             <div key={indeksi} className="nimidiv">
                                 <div className="sarjaklik" onClick={() => naytaSarja(indeksi)}>
-                                    <p className="nimi">{nimi.liike}</p>
+                                    <div className="ylarivi">
+                                        <p className="nimi">{nimi.liike}</p>
+                                        <button className="poistaButton" onClick={() => poista(indeksi)}>🗑️</button>
+                                    </div>
                                     {sarjaNakyma === true && indeksi === sarjadivIndeksi && (
-                                        //muuta listatreeneista vain listatreeneistaa jos ei toimi
                                         nimi.painotJaToistot.map((objekti, indeksi) => (
-                                            <p key={indeksi}>{objekti.paino}+{objekti.toistot}</p>
-                                        ))
+                                            <div key={indeksi} className="yksisarja">
+                                                <p className="yksiteksti">{objekti.paino}kg {objekti.toistot}x</p>
+                                            </div>
+                                        ))       
                                     )}
                                 </div>
-                                <button className="poistaButton" onClick={() => poista(indeksi)}>🗑️</button>
                             </div>
                         ))}
-                        <button className="lisaatreeni" onClick={() => lisaaTreeni()}>Tallenna treeni</button>
-                        <button className="takasbutton" onClick={lisaaButton}>Palaa takaisin</button>
+                        <div className="alarivi">
+                            <button className="lisaatreeni" onClick={() => lisaaTreeni()}>Tallenna treeni</button>
+                            <button className="takasbutton" onClick={lisaaButton}>Palaa takaisin</button>
+                        </div>
                     </div>
                     {/*<div className="tarkastelupuoli">
                         <h3 className="otsikko">{treeninNimi}</h3>

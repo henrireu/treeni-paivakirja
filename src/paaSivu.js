@@ -58,9 +58,9 @@ export default function Paasivu() {
                                 //muuta listatreeneista vain listatreeneistaa jos ei toimi
                                 listatreeneista[indeksi].sarjat.map((objekti, indeksix) => (
                                     <div key={indeksix}>
-                                        <p>{objekti.liike}</p>
+                                        <p className="treeniliikenimi">{objekti.liike}</p>
                                         {objekti.painotJaToistot.map((painoToisto, ptIndeksi) => (
-                                            <p key={ptIndeksi}>{painoToisto.paino}kg {painoToisto.toistot}</p>
+                                            <p className="treeniptnimet" key={ptIndeksi}>{painoToisto.paino}kg {painoToisto.toistot}x</p>
                                         ))}
                                     </div>
                                 ))
