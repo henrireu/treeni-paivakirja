@@ -96,7 +96,10 @@ export default function TreeninLisays({ lisaaButton }) {
             <div className="divXX">
                 <div className="jotainxx">
                     {painoToistoLista.map((objekti, indeksi) => (
-                        <p key={indeksi}>{objekti.paino}kg {objekti.toistot}x</p>
+                        <div key={indeksi} className="tausta">
+                            <p className="yksitekstix">{objekti.paino}kg {objekti.toistot}x</p>
+                            <button className="poistaButtoni" onClick={() => poista(indeksi, "pikkulista")}>🗑️</button>
+                        </div>
                     ))}
                     <div className="jotain">
                         <p className="syotteenNimi">Paino: (kg)</p>
@@ -187,10 +190,18 @@ export default function TreeninLisays({ lisaaButton }) {
         }   
     }
 
-    function poista(indeksi) {
-        let uusilista = [...kokotreeni];
-        uusilista.splice(indeksi, 1);
-        setKokotreeni(uusilista);
+    //käytän samaa funktiota kahdessa eri poistossa niin sen takia mikaLista
+    function poista(indeksi, mikaLista) {
+        if (mikaLista === "uuslista") {
+            let uusilista = [...kokotreeni];
+            uusilista.splice(indeksi, 1);
+            setKokotreeni(uusilista);
+        } 
+        if (mikaLista === "pikkulista") {
+            let uusilista = [...painoToistoLista];
+            uusilista.splice(indeksi, 1);
+            setPainoToistoLista(uusilista);
+        }
     }
 
     const [sarjaNakyma, setSarjaNakyma] = useState(false);
@@ -224,7 +235,7 @@ export default function TreeninLisays({ lisaaButton }) {
                                 <div className="sarjaklik" onClick={() => naytaSarja(indeksi)}>
                                     <div className="ylarivi">
                                         <p className="nimi">{nimi.liike}</p>
-                                        <button className="poistaButtoni" onClick={() => poista(indeksi)}>🗑️</button>
+                                        <button className="poistaButtoni" onClick={() => poista(indeksi, "uuslista")}>🗑️</button>
                                     </div>
                                     {sarjaNakyma === true && indeksi === sarjadivIndeksi && (
                                         nimi.painotJaToistot.map((objekti, indeksi) => (
@@ -262,8 +273,10 @@ export default function TreeninLisays({ lisaaButton }) {
                             <button className="minus" onClick={() => minus()}>-</button>
                         </div>*/}
                         {sarjaX()}
-                        <button onClick={() => tallennaSarja()}>Tallenna sarja</button>
-                        <button className="takasbutton" onClick={() => takaisinButton()}>takaisin</button>
+                        <div className="alarivi">
+                            <button className="lisaatreeni" onClick={() => tallennaSarja()}>Tallenna sarja</button>
+                            <button className="takasbutton" onClick={() => takaisinButton()}>takaisin</button>
+                        </div>
                     </div>
                 </div>  
             )}
