@@ -73,7 +73,9 @@ export default function TreeninLisays({ lisaaButton }) {
 
 
         function lisaayksSarja() {
-            if (toistot > 0) {
+            if (toistot < 1 || isNaN(paino) || isNaN(toistot)) {
+                alert("virhe syötteessä");
+            } else {
                 let indeksix = sarjaindeksi;
                 indeksix++;
                 setSarjaindeksi(indeksix);
@@ -218,6 +220,9 @@ export default function TreeninLisays({ lisaaButton }) {
             let uusilista = [...painoToistoLista];
             uusilista.splice(indeksi, 1);
             setPainoToistoLista(uusilista);
+            let uusilkm = sarjalkm;
+            uusilkm--;
+            setSarjalkm(uusilkm);
         }
     }
 

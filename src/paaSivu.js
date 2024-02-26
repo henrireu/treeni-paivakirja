@@ -60,7 +60,11 @@ export default function Paasivu() {
                                     <div key={indeksix}>
                                         <p className="treeniliikenimi">{objekti.liike}</p>
                                         {objekti.painotJaToistot.map((painoToisto, ptIndeksi) => (
-                                            <p className="treeniptnimet" key={ptIndeksi}>{painoToisto.paino}kg {painoToisto.toistot}x</p>
+                                            <p className="treeniptnimet" key={ptIndeksi}>
+                                                {painoToisto.paino < 1
+                                                    ? `${painoToisto.toistot}x`
+                                                    : `${painoToisto.paino}kg ${painoToisto.toistot}x`}
+                                            </p>
                                         ))}
                                     </div>
                                 ))
