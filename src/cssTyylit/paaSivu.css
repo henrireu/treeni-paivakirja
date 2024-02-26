@@ -1,10 +1,18 @@
+body {
+    font-family: cursive;
+}
+
+input {
+    border-radius: 8px;
+}
+
 .paadiv {
     height: 90%;
     width: 90%;
     margin-left: 5%;
     margin-top: 5%;
     border-radius: 8px;
-    background-color: beige;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
     display: flex;
     flex-direction: column;
 }
@@ -19,9 +27,12 @@
     margin-top: 20px;
     margin-bottom: 20px;
     min-height: 400px;
-    width: 500px;
+    width: 60%;
     border-radius: 8px;
-    background-color: rgb(243, 236, 236);
+    background: linear-gradient(to right, #feb47b, #ff7e5f);
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .lisaaButton {
@@ -41,7 +52,7 @@
 }
 
 .treeniotsikkodiv {
-    background-color: pink;
+    background: #f0f0f0;
     border-radius: 8px;
     display: flex;
     flex-direction: row;
