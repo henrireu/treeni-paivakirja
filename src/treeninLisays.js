@@ -73,23 +73,26 @@ export default function TreeninLisays({ lisaaButton }) {
 
 
         function lisaayksSarja() {
-            let indeksix = sarjaindeksi;
-            indeksix++;
-            setSarjaindeksi(indeksix);
+            if (toistot > 0) {
+                let indeksix = sarjaindeksi;
+                indeksix++;
+                setSarjaindeksi(indeksix);
 
-            let objekti = {
-                paino: paino,
-                toistot: toistot 
+                let objekti = {
+                    paino: paino,
+                    toistot: toistot 
+                }
+                setPaino("");
+                setToistot("");
+                let lista = [...painoToistoLista];
+                lista.push(objekti);
+                setPainoToistoLista(lista);
+
+                let luku = sarjalkm;
+                luku++;
+                setSarjalkm(luku);
             }
-            setPaino("");
-            setToistot("");
-            let lista = [...painoToistoLista];
-            lista.push(objekti);
-            setPainoToistoLista(lista);
-
-            let luku = sarjalkm;
-            luku++;
-            setSarjalkm(luku);
+            
         }
 
         return (
@@ -97,7 +100,11 @@ export default function TreeninLisays({ lisaaButton }) {
                 <div className="jotainxx">
                     {painoToistoLista.map((objekti, indeksi) => (
                         <div key={indeksi} className="tausta">
-                            <p className="yksitekstix">{objekti.paino}kg {objekti.toistot}x</p>
+                            <p className="yksitekstix">
+                                {objekti.paino < 1
+                                    ? `${objekti.toistot}x`
+                                    : `${objekti.paino}kg ${objekti.toistot}x`}
+                            </p>
                             <button className="poistaButtoni" onClick={() => poista(indeksi, "pikkulista")}>🗑️</button>
                         </div>
                     ))}
@@ -159,7 +166,7 @@ export default function TreeninLisays({ lisaaButton }) {
     }
 
     function tallennaSarja() {
-        if (sarjalkm > 0) {
+        if (sarjalkm > 0 && liike !== "") {
             let lista = [...kokotreeni];
             let sarjaobjekti = {
                 liike: liike,
@@ -167,14 +174,24 @@ export default function TreeninLisays({ lisaaButton }) {
             }
             lista.push(sarjaobjekti);
             setKokotreeni(lista);
+            setSarjaindeksi(1);
+            setSarjalkm(0);
+            setLiike("");
+            setPainoToistoLista([]);
+            setSyotetila(false)
+        } else {
+            if (sarjalkm < 1) {
+                alert("sarjalla ei ole yhtään toistoa!");
+            } else {
+                alert("anna liikkeelle nimi");
+            }
         }
         
-
-        setSarjaindeksi(1);
+        /*setSarjaindeksi(1);
         setSarjalkm(0);
         setLiike("");
         setPainoToistoLista([]);
-        setSyotetila(false);
+        setSyotetila(false);*/
     }
 
     //tässä lisätään treeni tietokantaan tässä tapauksessa treenidata.js kansioon
@@ -240,7 +257,11 @@ export default function TreeninLisays({ lisaaButton }) {
                                     {sarjaNakyma === true && indeksi === sarjadivIndeksi && (
                                         nimi.painotJaToistot.map((objekti, indeksi) => (
                                             <div key={indeksi} className="yksisarja">
-                                                <p className="yksiteksti">{objekti.paino}kg {objekti.toistot}x</p>
+                                                <p className="yksiteksti">
+                                                    {objekti.paino < 1
+                                                    ? `${objekti.toistot}x`
+                                                    : `${objekti.paino}kg ${objekti.toistot}x`}
+                                                </p>
                                             </div>
                                         ))       
                                     )}
