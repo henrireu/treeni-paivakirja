@@ -130,33 +130,6 @@ export default function TreeninLisays({ lisaaButton }) {
                 </div>
             </div>
         )
-
-        /*return (
-            <div>
-                <h4 className="otsikko">Sarja{sarjaindeksi}</h4>
-                <div className="yksisyotediv">
-                    <p className="pee">Paino: (kg)</p>
-                    <input 
-                    className="inputti"
-                    type="text"
-                    value={paino}
-                    onChange={painoChange}
-                    />
-                </div>
-                <div className="yksisyotediv">
-                    <p className="pee">Toistot: </p>
-                    <input 
-                    className="inputti"
-                    type="text"
-                    value={toistot}
-                    onChange={toistoChange}
-                    />
-                </div>
-                <button onClick={() => lisaaYksi()}>Lisää</button>
-            </div>
-            
-        )*/
-        
     }
 
     function treeninNimiChange(event) {

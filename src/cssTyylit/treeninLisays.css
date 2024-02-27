@@ -55,6 +55,7 @@
     margin-bottom: 5px;
     margin-left: 10px;
     margin-right: 10px;
+    width: 90%;
 }
 
 .nimidiv:hover {
@@ -104,7 +105,7 @@
 }
 
 .alarivi {
-    margin-top: auto;
+    margin-top: 10px;
     margin-bottom: 10px;
     display: flex;
     flex-direction: row;
@@ -112,31 +113,37 @@
 }
 
 .lisaatreeni {
-    width: 80px;
-    height: 40px;
+    width: 100px;
+    height: 50px;
     border-radius: 8px;
-    background-color: rgb(239, 239, 96);
-    margin-left: 10px;
+    background-color: lightgrey;
+    margin-left: auto;
+    font-weight: bold;
+    font-size: 16px;
 }
 
+
 .lisaatreeni:hover {
-    width: 88px;
-    height: 44px;
     cursor: pointer;
+    background-color: black;
+    color: lightgrey;
 }
 
 .takasbutton {
-    background-color: orange;
-    width: 80px;
-    height: 40px;
+    background-color: lightgrey;
+    width: 100px;
+    height: 50px;
     border-radius: 8px;
-    margin-left: 10px;
+    margin-left: 30px;
+    margin-right: auto;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .takasbutton:hover {
-    width: 88px;
-    height: 44px;
     cursor: pointer;
+    background-color: black;
+    color: lightgrey;
 }
 /*eka näkymä loppuu*/
 
@@ -146,10 +153,20 @@
     flex-direction: row;
 }
 
+.syotepuoli {
+    display: flex;
+    align-items: center;
+}
+
+.divXX {
+    width: 90%;
+}
+
 .jotain {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     margin-bottom: 50px;
 }
 
